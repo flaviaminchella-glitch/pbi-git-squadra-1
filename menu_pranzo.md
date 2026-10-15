@@ -2,6 +2,6 @@
 
 Antipasto: tagliere misto
 Primo: da decidere
-Pizza: acciughe e ananasse
+Pizza: metà Margherita con bufala, metà Diavola
 Dolce: tiramisù
 Bevanda: acqua frizzante
