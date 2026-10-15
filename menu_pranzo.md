@@ -2,6 +2,6 @@
 
 Antipasto: tagliere misto
 Primo: da decidere
-Pizza: ___
+Pizza: acciughe e ananas
 Dolce: tiramisù
 Bevanda: acqua frizzante
