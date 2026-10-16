@@ -5,7 +5,7 @@ table _misure
 		formatString: 0
 		lineageTag: afaace75-807c-4ebe-8c3e-a341aa577c6a
 
-	measure 'Margine %' = [Margine] / [Totale Vendite]
+	measure 'Margine %' = IF([Totale Vendite] > 0, [Margine] / [Totale Vendite])
 		lineageTag: 4246cd0d-5b29-4518-ba8e-9d85a996b39a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
