@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "_misure.Totale Vendite",
-              "nativeQueryRef": "Totale Vendite"
+              "nativeQueryRef": "Totale Vendite",
+              "format": "#,0.0 \"€\";-#,0.0 \"€\";#,0.0 \"€\""
             }
           ]
         }
