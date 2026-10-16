@@ -10,6 +10,7 @@ table _misure
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Ricavi meno costi
 	measure Margine = ```
 			SUM(Vendite[Importo]) - SUM(Vendite[Costo])
 			
