@@ -7,7 +7,6 @@ table _misure
 
 	measure 'Margine %' = DIVIDE([Margine], [Totale Vendite], 0)
 		lineageTag: 4246cd0d-5b29-4518-ba8e-9d85a996b39a
-
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	/// Ricavi meno costi
