@@ -1,0 +1,57 @@
+table Vendite
+	lineageTag: 6561c012-0542-4078-8f23-fe873f9c8f88
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: baf12a87-de8b-498a-8989-6d953b178382
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Prodotto
+		dataType: string
+		lineageTag: f1b5a4c6-ec6e-4d2a-8e93-0afaab6af595
+		summarizeBy: none
+		sourceColumn: Prodotto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Importo
+		dataType: int64
+		formatString: 0
+		lineageTag: ee0e743d-8936-427e-bb1e-debe54054c07
+		summarizeBy: sum
+		sourceColumn: Importo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Costo
+		dataType: int64
+		formatString: 0
+		lineageTag: a23342e1-ff99-4c5a-a4a0-e8b82ab70ed4
+		summarizeBy: sum
+		sourceColumn: Costo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendite = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Xc8xCsMwDAXQu3iOQZKtxJnbpVuHbiZDSAkUWlTSHCr36MVqKxDsLpYQz/p2jOY8rqNpzHWRu6yrpPbyesui3Uk+qQ5NNATUWkCLnMfjPH+31CABpNKls0SUhzcVQYHnEpAFV21hRYFqhCGjh0yTPPc3tupcKJ2zwEdazxkw1YCoStuf1Pcl8hbhP63Tb3hXOwpHGqJuatPVYfgB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"git pull" = _t, Column1 = _t, Column2 = _t, Column3 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"git pull", type text}, {"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Data", type date}, {"Prodotto", type text}, {"Importo", Int64.Type}, {"Costo", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

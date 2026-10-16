@@ -9,18 +9,12 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Calendar","Geography","Product","ProductCategory","ProductSubCategory","Sales","Stores","_misure"]
+annotation PBI_QueryOrder = ["_misure","Vendite"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table Calendar
-ref table Geography
-ref table Product
-ref table ProductCategory
-ref table ProductSubCategory
-ref table Sales
-ref table Stores
 ref table _misure
+ref table Vendite
 
 ref cultureInfo it-IT
 

@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Product"
+                      "Entity": "Vendite"
                     }
                   },
-                  "Property": "BrandName"
+                  "Property": "Prodotto"
                 }
               },
-              "queryRef": "Product.BrandName",
-              "nativeQueryRef": "BrandName",
+              "queryRef": "Vendite.Prodotto",
+              "nativeQueryRef": "Prodotto",
               "active": true
             }
           ]
@@ -89,15 +89,15 @@
         "type": "Advanced"
       },
       {
-        "name": "b0531ffb2c4efa65ab7a",
+        "name": "0e64cbcde4d1d6f8e130",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Product"
+                "Entity": "Vendite"
               }
             },
-            "Property": "BrandName"
+            "Property": "Prodotto"
           }
         },
         "type": "Categorical"

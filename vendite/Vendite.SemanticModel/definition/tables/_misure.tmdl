@@ -1,26 +1,20 @@
 table _misure
 	lineageTag: 0b17d807-fb41-4aff-acf3-29bc8220b92a
 
-	measure 'Totale Vendite' = SUMX( Sales, Sales[UnitPrice]* Sales[UnitCost])
+	measure 'Totale Vendite' = SUM(Vendite[Importo])
+		formatString: 0
 		lineageTag: afaace75-807c-4ebe-8c3e-a341aa577c6a
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Total Cost' = SUM(Sales[TotalCost])
+	measure 'Margine %' = [Margine] / [Totale Vendite]
 		lineageTag: 4246cd0d-5b29-4518-ba8e-9d85a996b39a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Margine = ```
-			[Totale Vendite] - [Total Cost]
+			SUM(Vendite[Importo]) - SUM(Vendite[Costo])
 			
 			```
 		lineageTag: bbcc483c-3b47-4dcb-8474-5dd8d8c47569
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure '% Margine' = [Margine]/ [Totale Vendite]
-		lineageTag: 02c7a790-c954-453e-b7b8-8e67580897d4
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -35,4 +29,6 @@ table _misure
 				    #"Removed Columns"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 
