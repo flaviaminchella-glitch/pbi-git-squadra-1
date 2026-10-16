@@ -1,0 +1,102 @@
+table Product
+	lineageTag: 45fcf4b0-c556-4990-857c-34bf70c0bef3
+
+	column ProductName
+		dataType: string
+		lineageTag: fcd876a9-7047-4244-a7ac-2a9f45828df8
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductDescription
+		dataType: string
+		lineageTag: 801419bf-9c68-4a56-83c8-fda5d00c4a3b
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: 5d5453fe-c756-40d3-b50a-fd127860a894
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column BrandName
+		dataType: string
+		lineageTag: c7a70b98-9d90-431f-86e4-a0d2543489cd
+		summarizeBy: none
+		sourceColumn: BrandName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClassName
+		dataType: string
+		lineageTag: 2869235a-cd2a-47af-8e6c-11922540b938
+		summarizeBy: none
+		sourceColumn: ClassName
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		lineageTag: 54474a61-e4d6-4ffc-9d86-a7d65d7aa6ee
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitPrice
+		dataType: double
+		lineageTag: 08fdf238-b79d-45db-b1d8-41ab1fd74774
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 914baf75-352b-4a61-8aef-8043fc533856
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f25785f2-e07b-4515-bdf2-9217ec84b12f
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: fbac82cb-1aa0-4b67-8e38-6e00297266f3
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\minchella\Downloads\9-Contoso_Sales_Sample_DAX.xlsx"), null, true),
+				    Product_Sheet = Source{[Item="Product",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductName", type text}, {"ProductDescription", type text}, {"Manufacturer", type text}, {"BrandName", type text}, {"ClassName", type text}, {"UnitCost", type number}, {"UnitPrice", type number}, {"ProductKey", Int64.Type}, {"ProductSubcategoryKey", Int64.Type}, {"Color", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Vendite"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6c34478e-f177-4cbd-bc55-fbde6a83d5f7"
+  }
+}

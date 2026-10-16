@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "d4c9fee7617e4975ed67",
+  "position": {
+    "x": 429.4933749025721,
+    "y": 490.84957131722524,
+    "z": 1,
+    "height": 427.99688230709273,
+    "width": 1147.809820732658,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product"
+                    }
+                  },
+                  "Property": "BrandName"
+                }
+              },
+              "queryRef": "Product.BrandName",
+              "nativeQueryRef": "BrandName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_misure"
+                    }
+                  },
+                  "Property": "Totale Vendite"
+                }
+              },
+              "queryRef": "_misure.Totale Vendite",
+              "nativeQueryRef": "Totale Vendite"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_misure"
+                  }
+                },
+                "Property": "Totale Vendite"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "51cf986ff8b86793e198",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_misure"
+              }
+            },
+            "Property": "Totale Vendite"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b0531ffb2c4efa65ab7a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Product"
+              }
+            },
+            "Property": "BrandName"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+table _misure
+	lineageTag: 0b17d807-fb41-4aff-acf3-29bc8220b92a
+
+	measure 'Totale Vendite' = SUMX( Sales, Sales[UnitPrice]* Sales[UnitCost])
+		lineageTag: afaace75-807c-4ebe-8c3e-a341aa577c6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Cost' = SUM(Sales[TotalCost])
+		lineageTag: 4246cd0d-5b29-4518-ba8e-9d85a996b39a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margine = ```
+			[Totale Vendite] - [Total Cost]
+			
+			```
+		lineageTag: bbcc483c-3b47-4dcb-8474-5dd8d8c47569
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Margine' = [Margine]/ [Totale Vendite]
+		lineageTag: 02c7a790-c954-453e-b7b8-8e67580897d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _misure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

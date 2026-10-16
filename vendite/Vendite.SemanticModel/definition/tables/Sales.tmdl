@@ -1,0 +1,140 @@
+table Sales
+	lineageTag: 320abeab-7012-4b4c-bb12-c2b6cf730850
+
+	column SalesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f397adb1-35e8-4934-aeb6-95adf085f1b6
+		summarizeBy: count
+		sourceColumn: SalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a7486704-1e9d-4b8a-88e0-8c2b11b9b527
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dc7ce27f-73f1-42e5-aefa-5f39ab6df352
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 46a22452-baab-4fae-b67c-447a912aea8a
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ec548886-7ee4-4c6f-9420-caf02e2d1679
+		summarizeBy: count
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		lineageTag: 7d01a1a4-b3c4-4a41-a0de-0d1f3e0d5cb2
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitPrice
+		dataType: double
+		lineageTag: 5f1b5f74-f260-4625-af1e-f4eb13c442b2
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fa6a08b-4fbe-4686-80ad-b8968b48664e
+		summarizeBy: sum
+		sourceColumn: SalesQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: d7264468-1281-483e-a094-6038829a6acb
+		summarizeBy: sum
+		sourceColumn: ReturnQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnAmount
+		dataType: double
+		lineageTag: 64aa495e-767f-4fba-9731-2aecc470efb4
+		summarizeBy: sum
+		sourceColumn: ReturnAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 89836c61-17f7-4e33-837d-d0d61adbdde8
+		summarizeBy: sum
+		sourceColumn: DiscountQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: d3fbe8fc-6f74-4de3-bb86-ca1416ac3434
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalCost
+		dataType: double
+		lineageTag: cae30641-4f23-4978-a2a1-eec0539405ae
+		summarizeBy: sum
+		sourceColumn: TotalCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\minchella\Downloads\9-Contoso_Sales_Sample_DAX.xlsx"), null, true),
+				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SalesKey", Int64.Type}, {"DateKey", type date}, {"StoreKey", Int64.Type}, {"ProductKey", Int64.Type}, {"PromotionKey", Int64.Type}, {"UnitCost", type number}, {"UnitPrice", type number}, {"SalesQuantity", Int64.Type}, {"ReturnQuantity", Int64.Type}, {"ReturnAmount", type number}, {"DiscountQuantity", Int64.Type}, {"DiscountAmount", type number}, {"TotalCost", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

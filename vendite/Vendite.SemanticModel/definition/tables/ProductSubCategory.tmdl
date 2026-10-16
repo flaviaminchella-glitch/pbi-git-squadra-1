@@ -1,0 +1,42 @@
+table ProductSubCategory
+	lineageTag: b17388e5-7312-42b3-8204-1548cbe43a5c
+
+	column ProductSubcategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 93c8da25-4704-4307-9a58-2bb71ed63b1c
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategory
+		dataType: string
+		lineageTag: a81df2bb-ddb7-4e11-a3aa-a611a224424d
+		summarizeBy: none
+		sourceColumn: ProductSubcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dd8fda40-68fc-42b5-a494-475bdd2f5239
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProductSubCategory = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\minchella\Downloads\9-Contoso_Sales_Sample_DAX.xlsx"), null, true),
+				    ProductSubCategory_Sheet = Source{[Item="ProductSubCategory",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(ProductSubCategory_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductSubcategoryKey", Int64.Type}, {"ProductSubcategory", type text}, {"ProductCategoryKey", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

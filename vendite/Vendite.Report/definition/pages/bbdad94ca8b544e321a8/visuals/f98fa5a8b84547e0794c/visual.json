@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "f98fa5a8b84547e0794c",
+  "position": {
+    "x": 429.4933749025721,
+    "y": 228.96336710833984,
+    "z": 0,
+    "height": 185.56508183943882,
+    "width": 291.81605611847232,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_misure"
+                    }
+                  },
+                  "Property": "Totale Vendite"
+                }
+              },
+              "queryRef": "_misure.Totale Vendite",
+              "nativeQueryRef": "Totale Vendite"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_misure"
+                  }
+                },
+                "Property": "Totale Vendite"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b12d482643c7df81b9ed",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_misure"
+              }
+            },
+            "Property": "Totale Vendite"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
