@@ -49,8 +49,6 @@ table Vendite
 				in
 				    #"Changed Type1"
 
-	changedProperty = Name
-
 	annotation PBI_ResultType = Table
 
 	annotation PBI_NavigationStepName = Navigation
